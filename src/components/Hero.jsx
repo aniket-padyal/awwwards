@@ -1,5 +1,4 @@
 import { useState, useRef } from "react";
-// import Video from "./Video";
 
 const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(1);
@@ -7,17 +6,19 @@ const Hero = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [loadedVideos, setLoadedVideos] = useState(0);
 
-  const totalVideos = 4;
+  const totalVideos = 3;
   const nextVideoRef = useRef(null);
 
   const handleVideoLoad = () => {
     setLoadedVideos((prev) => prev + 1);
   };
 
+  const upcomingVideoIndex = (currentIndex % totalVideos) + 1;
+
   const handleMiniVideoClick = () => {
     setHasClicked(true);
 
-    setCurrentIndex((prevIndex) => prevIndex + 1);
+    setCurrentIndex(upcomingVideoIndex);
   };
 
   const getVideoSrc = (index) => `/videos/hero-${index}.mp4`;
@@ -32,13 +33,37 @@ const Hero = () => {
                 loop
                 muted
                 ref={nextVideoRef}
-                src={getVideoSrc(currentIndex + 1)}
+                src={getVideoSrc(upcomingVideoIndex)}
                 id="current-video"
                 onLoadedData={handleVideoLoad}
               />
             </div>
           </div>
+
+          <video
+            ref={nextVideoRef}
+            src={getVideoSrc(currentIndex)}
+            loop
+            muted
+            id="next-video"
+            onLoadedData={handleVideoLoad}
+          />
+
+          <video
+            src={getVideoSrc(
+              currentIndex == totalVideos - 1 ? 1 : currentIndex,
+            )}
+            autoPlay
+            loop
+            muted
+            className="hero-video "
+            onLoadedData={handleVideoLoad}
+          />
         </div>
+
+        <h1 className="hero-heading" >
+          G<b>a</b>ming
+        </h1>
       </div>
     </section>
   );

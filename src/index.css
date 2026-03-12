@@ -71,12 +71,29 @@ body {
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
+@utility special-font  {
+  font-family: "zentry-regular", sans-serif;
+  font-feature-settings: "ss01" on;
+}
+
 @layer components {
   #hero {
     @apply relative h-dvh w-screen overflow-x-hidden;
 
     #video-frame {
       @apply relative z-10 h-dvh w-screen overflow-hidden rounded-lg bg-blue-75;
+
+      .hero-heading {
+        @apply special-font absolute bottom-5 right-5 z-40 text-blue-75 ;
+      }
+
+      #next-video {
+        @apply absolute-center invisible absolute z-20 size-64 object-cover object-center;
+      }
+
+      .hero-video {
+        @apply absolute left-0 top-0 size-full object-cover object-center;
+      }
 
       .video-mask {
         @apply absolute-center absolute z-50 size-64 cursor-pointer overflow-hidden rounded-lg;
