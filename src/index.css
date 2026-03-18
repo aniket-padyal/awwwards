@@ -76,9 +76,13 @@ body {
   font-feature-settings: "ss01" on;
 }
 
+@utility flex-center {
+  @apply flex justify-center items-center;
+}
+
 @utility hero-heading {
-    @apply uppercase font-zentry font-black text-5xl sm:right-10 sm:text-7xl md:text-9xl lg:text-[12rem];
-  }
+  @apply uppercase font-zentry font-black text-5xl sm:right-10 sm:text-7xl md:text-9xl lg:text-[12rem];
+}
 
 @layer components {
   #hero {
@@ -86,12 +90,6 @@ body {
 
     #video-frame {
       @apply relative z-10 h-dvh w-screen overflow-hidden rounded-lg bg-blue-75;
-
-      /* h1 {
-        @apply special-font absolute bottom-5 right-5 z-40 text-blue-75  ;
-
-       
-      } */
 
       #next-video {
         @apply absolute-center invisible absolute z-20 size-64 object-cover object-center;
@@ -115,6 +113,9 @@ body {
         }
       }
     }
+  }
+
+  #button {
   }
 }
 
